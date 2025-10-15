@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 """
 local, multilingual, robust, fully offline chatbot with consensus + paa + c3 + rcg
@@ -21,7 +19,7 @@ local, multilingual, robust, fully offline chatbot with consensus + paa + c3 + r
            /assert add <name>|<regex>, /assert list, /assert clear
 - all inline comments are in english and in lowercase only
 """
-
+# all imports that we need
 import os
 import re
 import sys
@@ -46,7 +44,7 @@ from transformers import (
 )
 
 # -----------------------------------------------------------------------------
-# logging
+# logging (important)
 # -----------------------------------------------------------------------------
 
 LOG_LEVEL = os.getenv("CHATBOT_LOG_LEVEL", "INFO").upper()
@@ -58,7 +56,7 @@ logger = logging.getLogger("chatbot")
 logging.getLogger("transformers").setLevel(logging.WARNING)
 
 # -----------------------------------------------------------------------------
-# device & torch
+# device & torch 
 # -----------------------------------------------------------------------------
 
 def get_device() -> torch.device:
@@ -118,7 +116,7 @@ class ChatConfig:
         self.n_consensus = int(min(max(self.n_consensus, 1), 7))
 
 # -----------------------------------------------------------------------------
-# helpers
+# helpers (all fonctions helper that we need
 # -----------------------------------------------------------------------------
 
 def _normalize_ws(text: str) -> str:
@@ -162,7 +160,7 @@ def _tokenize_for_overlap(text: str) -> List[str]:
     return re.findall(r"[a-zàâäéèêëîïôöùûüç0-9]+", text.lower())
 
 # -----------------------------------------------------------------------------
-# shield against prompt-injection
+# shield against prompt-injection (cyber
 # -----------------------------------------------------------------------------
 
 INJECTION_PATTERNS = [
@@ -181,7 +179,7 @@ def _strip_injection(text: str) -> str:
     return cleaned
 
 # -----------------------------------------------------------------------------
-# safety filter
+# safety filter (for safety 
 # -----------------------------------------------------------------------------
 
 class SafetyFilter:
@@ -390,6 +388,7 @@ class RateLimiter:
             self.last_call = now
             return True
         return False
+               
 
 # -----------------------------------------------------------------------------
 # core chatbot
@@ -457,6 +456,11 @@ class AdvancedMultilingualChatbot:
             "/assert": self._cmd_assert,
         }
 
+
+
+
+
+           
     # ---------------- loading ----------------
 
     def _make_pipeline_safe(self, task: str, model_name: str):
@@ -496,6 +500,7 @@ class AdvancedMultilingualChatbot:
                 logger.warning(f"failed: {name}: {e}")
         raise RuntimeError(f"no local conversational model available. last error: {last_err}")
 
+           
     # ---------------- language detection ----------------
 
     @lru_cache(maxsize=512)
