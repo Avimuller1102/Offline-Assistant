@@ -18,7 +18,7 @@
 # - summarization model for fusion/polish
 # - nli model (mnli) for entailment-based verification
 #
-# note: "perfect" software does not exist; this is engineered to be robust, debuggable, and auditable.
+# if you have any questions : avimuller1102@gmail.com
 
 import os
 import re
