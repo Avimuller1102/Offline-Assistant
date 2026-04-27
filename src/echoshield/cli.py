@@ -1,6 +1,5 @@
 import typer
 from rich import print
-from typing import Optional
 
 from echoshield.engine import EchoShield, EchoConfig
 
