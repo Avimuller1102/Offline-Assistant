@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "echoshield"
+version = "0.1.0"
+description = "EchoShield v2 - Fully offline, multilingual chatbot with proof-carrying answers"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Avinoam Muller", email = "avimuller1102@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "torch",
+    "transformers",
+    "langdetect"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1.0",
+]
+api = [
+    "fastapi",
+    "uvicorn"
+]
+cli = [
+    "typer"
+]
+
+[project.scripts]
+echoshield = "echoshield.cli:app"
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/echoshield"]
